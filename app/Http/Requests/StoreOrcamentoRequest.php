@@ -24,7 +24,7 @@ class StoreOrcamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_orcamento' => ['required']
+            'id_orcamento' => ['required', 'unique:orcamentos,id_orcamento' . $this->orcamento->id_orcamento]
             ,'nome_cliente' => ['required']
             ,'data_e_hora_orcamento' => ['required']
             ,'nome_vendedor' => ['required']

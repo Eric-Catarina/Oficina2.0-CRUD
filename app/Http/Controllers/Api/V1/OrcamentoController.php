@@ -20,5 +20,11 @@ class OrcamentoController extends Controller
         Orcamento::create($request->validated());
         return response()->json("Orçamento criado!");
     }
+
+    public function update(StoreOrcamentoRequest $request, Orcamento $orcamento)
+    {
+        $orcamento->update($request->validated());
+        return response()->json("Orçamento atualizado!");
+    }
     
 }
