@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreOrcamentoRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class StoreOrcamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_orcamento' => ['required', 'unique:orcamentos,id_orcamento' . $this->orcamento->id_orcamento]
+            'id_orcamento' => ['required', Rule::unique('orcamentos')->ignore($this->orcamento)]
             ,'nome_cliente' => ['required']
             ,'data_e_hora_orcamento' => ['required']
             ,'nome_vendedor' => ['required']
