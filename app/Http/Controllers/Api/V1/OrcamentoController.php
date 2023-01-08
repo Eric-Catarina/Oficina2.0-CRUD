@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Orcamento;
 use App\Http\Requests\StoreOrcamentoRequest;
 use App\Http\Resources\V1\OrcamentoResource;
+use App\Http\Resources\V1\OrcamentoCollection;
 
 
 class OrcamentoController extends Controller
@@ -14,7 +15,7 @@ class OrcamentoController extends Controller
     
     public function index()
     {
-        return response()-> json("Index Orcamento");
+        return new OrcamentoCollection(Orcamento::paginate(1));
     }    
 
     public function store(StoreOrcamentoRequest $request)
@@ -34,4 +35,9 @@ class OrcamentoController extends Controller
         return new OrcamentoResource($orcamento);
     }
     
+    public function destroy(Orcamento $orcamento)
+    {
+        $orcamento->delete();
+        return response()->json("Orcamento deletado!");
+    }
 }
