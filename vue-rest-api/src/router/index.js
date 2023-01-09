@@ -11,11 +11,18 @@ const router = createRouter({
     },
     {
       path: '/orcamentos',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/HomeView.vue')
+      name: 'OrcamentoIndex',
+      component: () => import('../views/orcamentos/OrcamentoIndex.vue')
+    },
+    {
+      path: '/orcamentos/create',
+      name: 'OrcamentoCreate',
+      component: () => import('../views/orcamentos/OrcamentoCreate.vue')
+    },
+    {
+      path: '/orcamentos/:id/edit',
+      name: 'OrcamentoEdit',
+      component: () => import('../views/orcamentos/OrcamentoEdit.vue')
     }
   ]
 })
