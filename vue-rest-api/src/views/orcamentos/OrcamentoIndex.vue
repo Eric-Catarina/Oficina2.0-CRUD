@@ -2,7 +2,7 @@
 import useOrcamentos from '../../composables/orcamentos';
 import { onMounted } from 'vue';
 
-const { orcamentos, getOrcamentos } = useOrcamentos();
+const { orcamentos, getOrcamentos, destroyOrcamento } = useOrcamentos();
 
 onMounted(() => getOrcamentos());
 
@@ -50,6 +50,7 @@ onMounted(() => getOrcamentos());
                                 class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded">
                                 Editar</RouterLink>
                             <button
+                            @click="destroyOrcamento(orcamento.id)"
                                 class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">Deletar</button>
 
                         </td>

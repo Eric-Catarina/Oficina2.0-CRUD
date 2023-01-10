@@ -50,7 +50,7 @@ export default function useOrcamentos(){
             return
         }
         await axios.delete("orcamento/" + id);
-        await getOrcamento();
+        await getOrcamentos();
     };
 
     return {
