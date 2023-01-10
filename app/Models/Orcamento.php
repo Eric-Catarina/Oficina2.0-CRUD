@@ -9,6 +9,6 @@ class Orcamento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_orcamento','nome_cliente','data_e_hora_orcamento','nome_vendedor','descricao','valor_orcado'];
+    protected $fillable = ['nome_cliente','nome_vendedor','descricao','valor_orcado'];
 
 }

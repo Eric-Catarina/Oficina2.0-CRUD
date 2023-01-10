@@ -17,7 +17,7 @@ class OrcamentoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_orcamento' => $this->id,
+            'id' => $this->id,
             'nome_cliente' => $this->nome_cliente,
             'nome_vendedor' => $this->nome_vendedor,
             'descricao' => $this->descricao,
