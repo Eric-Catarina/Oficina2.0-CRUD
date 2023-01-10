@@ -11,7 +11,8 @@ onMounted(() => getOrcamentos());
 <template>
     <div class="mt-12">
         <div class="flex justify-end m-2 p-2">
-            <RouterLink :to="{name: 'OrcamentoCreate'}" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded">Novo Orçamento</RouterLink>
+            <RouterLink :to="{ name: 'OrcamentoCreate' }"
+                class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded">Novo Orçamento</RouterLink>
         </div>
 
         <div class="relative overflow-x-auto">
@@ -44,7 +45,14 @@ onMounted(() => getOrcamentos());
                         <td class="py-4 px-6">{{ orcamento.descricao }}</td>
                         <td class="py-4 px-6">{{ orcamento.valor_orcado }}</td>
 
-                        <td class="py-4 px-6">Editar/Deletar</td>
+                        <td class="py-4 px-6 space-x-2">
+                            <RouterLink :to="{ name: 'OrcamentoEdit', params: { id: orcamento.id } }"
+                                class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded">
+                                Editar</RouterLink>
+                            <button
+                                class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">Deletar</button>
+
+                        </td>
 
 
                     </tr>

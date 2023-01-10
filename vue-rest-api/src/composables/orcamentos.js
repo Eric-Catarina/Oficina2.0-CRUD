@@ -17,7 +17,7 @@ export default function useOrcamentos(){
     };
 
     const getOrcamento = async (id) => {
-        const response = await axios.get("orcamento" + id)
+        const response = await axios.get("orcamento/" + id)
         orcamento.value = response.data.data;
     };
 
@@ -28,7 +28,7 @@ export default function useOrcamentos(){
         }
         catch(error){
             if(error.response.status === 422){
-                errors.value = error.response.data.erros;
+                errors.value = error.response.data.errors;
             }
         }
     };
@@ -40,7 +40,7 @@ export default function useOrcamentos(){
         }
         catch(error){
             if(error.response.status === 422){
-                errors.value = error.response.data.erros;
+                errors.value = error.response.data.errors;
             }
         }
     };

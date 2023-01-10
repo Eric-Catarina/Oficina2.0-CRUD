@@ -22,7 +22,8 @@ const router = createRouter({
     {
       path: '/orcamentos/:id/edit',
       name: 'OrcamentoEdit',
-      component: () => import('../views/orcamentos/OrcamentoEdit.vue')
+      component: () => import('../views/orcamentos/OrcamentoEdit.vue'),
+      props: true
     }
   ]
 })
