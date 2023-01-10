@@ -10,7 +10,7 @@ onMounted(() => getOrcamentos());
 </script>
 <template>
     <div class="mt-12">
-        <div class="flex justify-end m-2 p-2">
+        <div class="flex justify-end mb-2">
             <RouterLink :to="{ name: 'OrcamentoCreate' }"
                 class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded">Novo Orçamento</RouterLink>
         </div>
