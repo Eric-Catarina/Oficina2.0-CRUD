@@ -15,7 +15,7 @@ class OrcamentoController extends Controller
     
     public function index()
     {
-        return new OrcamentoCollection(Orcamento::paginate(1));
+        return new OrcamentoCollection(Orcamento::all());
     }    
 
     public function store(StoreOrcamentoRequest $request)

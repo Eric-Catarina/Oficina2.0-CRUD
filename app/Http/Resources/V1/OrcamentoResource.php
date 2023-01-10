@@ -19,7 +19,9 @@ class OrcamentoResource extends JsonResource
         return [
             'id_orcamento' => $this->id,
             'nome_cliente' => $this->nome_cliente,
-
+            'nome_vendedor' => $this->nome_vendedor,
+            'descricao' => $this->descricao,
+            'valor_orcado' => $this->valor_orcado,
             'rota' => route('orcamento.show', $this->id)
         ];
     }

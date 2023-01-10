@@ -10,7 +10,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/orcamentos',
+      path: '/orcamento',
       name: 'OrcamentoIndex',
       component: () => import('../views/orcamentos/OrcamentoIndex.vue')
     },
