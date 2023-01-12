@@ -1,19 +1,27 @@
 <script setup>
 import useOrcamentos from '../../composables/orcamentos';
 import { onMounted } from 'vue';
-import { initTabs } from 'flowbite'
-
-
+import dayjs from "dayjs";
 const { orcamentos, getOrcamentos, destroyOrcamento } = useOrcamentos();
 
-onMounted(() => getOrcamentos());
 
-console.log(orcamentos)
-const orcamentosDataDecrescentes = () =>{
-    return orcamentos.value.reverse();
+
+onMounted(() => {
+    getOrcamentos()
+});
+
+const tornaDataLegivel = (data) => {
+    let dataLegivel = data.format('DD/MM/YYYY')
+    return dataLegivel
+}
+
+const sort = (column) => {
+    orcamentos.value =  orcamentos.value.sort(x => x.nome_cliente)
+    console.log(Date.parse(orcamentos.value[0].created_at))
 }
 
 </script>
+
 <template>
     <div class="mt-12">
         <div class="flex justify-end mb-2">
@@ -59,19 +67,19 @@ const orcamentosDataDecrescentes = () =>{
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th @click="sort('nome_cliente')"  scope="col" class="bg-indigo-500 hover:bg-indigo-700 px-6 py-3">
                             Nome Cliente
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th @click="sort('nome_cliente')"  scope="col" class="bg-indigo-500 hover:bg-indigo-700 px-6 py-3">
                             Nome Vendedor
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th @click="sort('nome_cliente')"  scope="col" class="bg-indigo-500 hover:bg-indigo-700 px-6 py-3">
                             Descricao
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th @click="sort('nome_cliente')"  scope="col" class="bg-indigo-500 hover:bg-indigo-700 px-6 py-3">
                             Valor Orcado
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th @click="sort('nome_cliente')"  scope="col" class="bg-indigo-500 hover:bg-indigo-700 px-6 py-3">
                             Data
                         </th>
 
@@ -87,8 +95,7 @@ const orcamentosDataDecrescentes = () =>{
                         <td class="py-4 px-6">{{ orcamento.nome_vendedor }}</td>
                         <td class="py-4 px-6">{{ orcamento.descricao }}</td>
                         <td class="py-4 px-6">{{ orcamento.valor_orcado }}</td>
-                        <td class="py-4 px-6">{{ orcamento.valor_orcado }}</td>
-
+                        <td class="py-4 px-6">{{ tornaDataLegivel( orcamento.created_at )}}</td>
                         <td class="py-4 px-6 space-x-2">
                             <RouterLink :to="{ name: 'OrcamentoEdit', params: { id: orcamento.id } }"
                                 class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded">

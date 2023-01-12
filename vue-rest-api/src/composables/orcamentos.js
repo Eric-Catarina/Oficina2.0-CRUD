@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from 'vue-router'
+import dayjs from "dayjs";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/";
 
@@ -14,6 +15,12 @@ export default function useOrcamentos(){
     const getOrcamentos = async () => {
         const response = await axios.get("orcamento")
         orcamentos.value = response.data.data;
+
+        orcamentos.value.forEach(element => {
+            element.created_at = dayjs(element.created_at.slice(0,10)).locale('pt-br')
+            console.log(element.created_at)
+        });
+       
     };
 
     const getOrcamento = async (id) => {
