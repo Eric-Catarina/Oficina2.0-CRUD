@@ -17,7 +17,7 @@ export default function useOrcamentos(){
     const getOrcamentos = async () => {
         const response = await axios.get("orcamento")
         orcamentos.value = response.data.data;
-
+        orcamentosVisiveis.value = []
         orcamentos.value.forEach(element => {
             orcamentosVisiveis.value.push(element)
             element.created_at = dayjs(element.created_at).locale('pt-br')
