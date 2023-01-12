@@ -11,14 +11,16 @@ export default function useOrcamentos(){
     const orcamento = ref([]);
     const errors = ref({});
     const router = useRouter();
+    const orcamentosVisiveis = ref([]);
+
 
     const getOrcamentos = async () => {
         const response = await axios.get("orcamento")
         orcamentos.value = response.data.data;
 
         orcamentos.value.forEach(element => {
-            element.created_at = dayjs(element.created_at.slice(0,10)).locale('pt-br')
-            console.log(element.created_at)
+            orcamentosVisiveis.value.push(element)
+            element.created_at = dayjs(element.created_at).locale('pt-br')
         });
        
     };
@@ -63,6 +65,7 @@ export default function useOrcamentos(){
     return {
         orcamento,
         orcamentos,
+        orcamentosVisiveis,
         getOrcamento,
         getOrcamentos,
         storeOrcamento,

@@ -2,29 +2,40 @@
 import useOrcamentos from '../../composables/orcamentos';
 import { onMounted } from 'vue';
 import dayjs from "dayjs";
-
-const { orcamentos, getOrcamentos, destroyOrcamento } = useOrcamentos();
-
+import DateRangePicker from 'flowbite-datepicker/DateRangePicker';
+const { orcamentos,orcamentosVisiveis, getOrcamentos, destroyOrcamento } = useOrcamentos();
+let myDateRangePicker
 
 onMounted(() => {
     getOrcamentos()
-    orcamentos.value.forEach(orcamento => {
 
+    const dateRangePickerEl = document.getElementById('daterangepicker');
+    myDateRangePicker = new DateRangePicker(dateRangePickerEl, {
+        // options
     });
+   
 });
 let ordemEhCrescente = false     // decresecente e crescente
 
+function filtraPorData(){
+    let dataInicial = dayjs(myDateRangePicker.dates[0]) 
+    let dataFinal   = dayjs(myDateRangePicker.dates[1]) 
 
+    orcamentosVisiveis.value = orcamentos.value.filter(function(item) {
+        return (item.created_at.isAfter(dataInicial) && item.created_at.isBefore(dataFinal));
+    });
 
-function sort(propriedade) {
+}
+
+function sortString(propriedade) {
     if (!ordemEhCrescente) {
-        orcamentos.value.sort(function (a, b) {
-            return b[propriedade].localeCompare(a[propriedade]);
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return b[propriedade].localeCompare(a[propriedade], { sensitivity: 'base' });
         })
     }
     else {
-        orcamentos.value.sort(function (a, b) {
-            return a[propriedade].localeCompare(b[propriedade]);
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return a[propriedade].localeCompare(b[propriedade], { sensitivity: 'base' });
         })
     }
     ordemEhCrescente = !ordemEhCrescente
@@ -32,16 +43,22 @@ function sort(propriedade) {
 
 
 const tornaDataLegivel = (data) => {
-    let dataLegivel = data.format('DD/MM/YYYY')
+    let dataLegivel = data.format('DD/MM/YYYY HH:mm')
     return dataLegivel
 }
 
-const sortDatas = (propriedade) => {
-    let propriedadeAtualArray = []
-    orcamentos.value.forEach(orcamento => {
-        propriedadeAtualArray.push(orcamento[propriedade])
-    });
-
+const sortDatas = () => {
+    if (!ordemEhCrescente) {
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return a.created_at.isBefore(b.created_at)
+        });
+    }
+    else {
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return a.created_at.isAfter(b.created_at)
+        });
+    }
+    ordemEhCrescente = !ordemEhCrescente
 }
 
 </script>
@@ -55,51 +72,7 @@ const sortDatas = (propriedade) => {
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between pb-4">
-                <div>
-                    <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                        class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        type="button">
-                        <svg class="w-4 h-4 mr-2 text-gray-400" aria-hidden="true" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Ordernar por data
-                        <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdownRadio"
-                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                        data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
-                        style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
-                        <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownRadioButton">
-                            <li>
-                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input checked="true" id="filter-radio-example-1" type="radio" value=""
-                                        name="filter-radio"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="filter-radio-example-1"
-                                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Crescente</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <input id="filter-radio-example-2" type="radio" value="" name="filter-radio"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="filter-radio-example-2"
-                                        class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Descrescente</label>
-                                </div>
-                            </li>
 
-                        </ul>
-                    </div>
-                </div>
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -114,23 +87,60 @@ const sortDatas = (propriedade) => {
                         class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for items">
                 </div>
+
+
+                <div class="flex items-end">
+                    <div id="daterangepicker" class="flex items-center">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input name="start" type="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date start">
+                        </div>
+                        <span class="mx-4 text-gray-500">to</span>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <input name="end" type="text"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date end">
+                        </div>
+                    </div>
+                    <div>
+                        <button @click="filtraPorData()" class="ml-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded">Filtrar</button>
+                    </div>
+
+                </div>
             </div>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th @click="sort('nome_cliente')" scope="col" class="px-6 py-3">
+                        <th @click="sortString('nome_cliente')" scope="col" class="px-6 py-3">
                             Nome Cliente
                         </th>
-                        <th @click="sort('nome_vendedor')" scope="col" class="px-6 py-3">
+                        <th @click="sortString('nome_vendedor')" scope="col" class="px-6 py-3">
                             Nome Vendedor
                         </th>
-                        <th @click="sort('descricao')" scope="col" class="px-6 py-3">
+                        <th @click="sortString('descricao')" scope="col" class="px-6 py-3">
                             Descricao
                         </th>
-                        <th @click="sort('valor_orcado')" scope="col" class="px-6 py-3">
+                        <th @click="sortString('valor_orcado')" scope="col" class="px-6 py-3">
                             Valor Orcado
                         </th>
-                        <th @click="sortDatas(orcamentos.value.created_at)" scope="col" class="px-6 py-3">
+                        <th @click="sortDatas()" scope="col" class="px-6 py-3">
                             Data
                         </th>
 
@@ -140,7 +150,7 @@ const sortDatas = (propriedade) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="orcamento in orcamentos" :key="orcamento.id"
+                    <tr v-for="orcamento in orcamentosVisiveis" :key="orcamento.id"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{
                             orcamento.nome_cliente
@@ -155,9 +165,7 @@ const sortDatas = (propriedade) => {
                                 Editar</RouterLink>
                             <button @click="destroyOrcamento(orcamento.id)"
                                 class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded">Deletar</button>
-
                         </td>
-
 
                     </tr>
                 </tbody>
