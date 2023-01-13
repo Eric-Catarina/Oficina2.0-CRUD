@@ -36,6 +36,7 @@ ___
 ## Instalação
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
+# Back-end
 Instale o SQLite3:
 ```
 npm install sqlite3
@@ -66,11 +67,20 @@ Instalar as dependências PHP:
 ```
 composer install
 ```
-Instalar as dependências node:
-```
-npm install
-```
 E rodar o servidor:
 ```
 php artisan serve
+```
+# Front-end
+Para ver a aplicação, basta entrar na pasta do front-end:
+```
+cd vue-rest-api
+```
+Instalar os pacotes node:
+```
+npm install
+```
+E rodar a aplicação:
+```
+npm run dev
 ```
