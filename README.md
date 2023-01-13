@@ -37,7 +37,7 @@ ___
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
 # Back-end
-Instale o PHP-SQLite:
+Instale o [PHP-SQLite](https://www.php.net/manual/en/sqlite3.installation.php):
 ```
 sudo apt install php-sqlite3
 ```
@@ -62,7 +62,7 @@ E rodar o servidor:
 php artisan serve
 ```
 # Front-end
-Para ver a aplicação, basta entrar na pasta do front-end:
+Para ver a aplicação, **abra outro terminal** e entre na pasta do front-end:
 ```
 cd vue-rest-api
 ```
@@ -74,3 +74,4 @@ E rodar a aplicação:
 ```
 npm run dev
 ```
+Clique [aqui](http://localhost:3000/orcamento) para ver a aplicação🎆
