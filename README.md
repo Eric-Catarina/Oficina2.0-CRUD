@@ -20,16 +20,16 @@ Através de um dashboard elegante manter tudo organizado e dentro dos prazos se 
 <b>Tecnologias usadas:</b> 
 
 - Back-end: 
-  - `Laravel` (`PHP`, `Artisan`, `Composer`)
+  - [`Laravel`](https://laravel.com/) ([`PHP`](https://www.php.net/), `Artisan`, [`Composer`](https://getcomposer.org/))
   - [`Insomnia`](https://insomnia.rest/download) (Testes manuais da Api REST)
-  - Banco de Dados `SQLite`
+  - Banco de Dados [`SQLite`](https://www.sqlite.org/index.html) + [`SQLite DB Browser`](https://sqlitebrowser.org/)
   <br>
 - Front-end: 
-  - `Vue.js`
-  - `Tailwind` + `Flowbite.js`
-  - `Day.js`
+  - [`Vue.js`](https://vuejs.org/)
+  - [`Tailwind`](https://tailwindcss.com/) + [`Flowbite.js`](https://flowbite.com/)
+  - [`Day.js`](https://day.js.org/)
   - `Javascript`
-  - `Vite.js`(bundler)
+  - [`Vite.js`](https://vitejs.dev/)(bundler)
 ___
 - Dificuldades encontradas: Durante a instalção, aparentemente a minha máquina (Windows) estava com configurações conflitantes com a criação do projeto no Back-end. Mas depois de estudar os erros, desinstalar e reinstalar algumas depêndencias conflitantes, começou a dar certo. Tive alguns problemas também com o hot-reload do Vite que não estava funcionando. Por último e não menos importante, algumas funcionalidades(DateRangePicker) do Flowbite estavam literalmente sem documentação, e para fazê-las funcionar, tive que procurar em vários repositórios do Github o código fonte delas e a partir daí extrair as funções que eu precisava.
 
