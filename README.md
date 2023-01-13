@@ -31,7 +31,7 @@ Através de um dashboard elegante manter tudo organizado e dentro dos prazos se 
   - Javascript
   - Vite.js(bundler)
 ___
-- Desafios encontrados: Tive certa dificuldade ao manipular os tipos de dados e fazer a comunicação entre o banco de dados e o front-end. Porém, depois de me atentar mais aos detalhes, consegui fazer uma estrutura mais sólida e limpa.
+- Dificuldades encontradas: Durante a instalção, aparentemente a minha máquina (Windows) estava com configurações conflitantes com a criação do projeto no Back-end. Mas depois de estudar os erros, desinstalar e reinstalar algumas depêndencias conflitantes, começou a dar certo. Tive alguns problemas também com o hot-reload do Vite que não estava funcionando. Por último e não menos importante, algumas funcionalidades(DateRangePicker) do Flowbite estavam literalmente sem documentação, e para fazê-las funcionar, tive que procurar em vários repositórios do Github o código fonte delas e a partir daí extrair as funções que eu precisava.
 
 ## Instalação
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados
