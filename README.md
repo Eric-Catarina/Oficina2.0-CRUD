@@ -37,12 +37,6 @@ ___
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
 # Back-end
-Instale o SQLite3:
-```
-npm install sqlite3
-// ou
-yarn add sqlite3
-```
 Instale o PHP-SQLite:
 ```
 sudo apt install php-sqlite3
@@ -51,10 +45,6 @@ Obs.: Em caso de erro na instalação e configuração do php-sqlite entre nesse
 ___
 Instale o [Composer](https://getcomposer.org/download/).
 <br>
-Instale o [Laravel](https://laravel.com/docs/9.x/installation):
-```
-composer global require laravel/installer
-```
 E pronto! Agora basta clonar o projeto:
 ```
 git clone https://github.com/Eric-Catarina/Oficina2.0-CRUD.git
