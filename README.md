@@ -46,7 +46,7 @@ ___
 # Instalação
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
-**Obs.: É altamente recomendado que você tenha o WSL instalado na sua máquina**
+**Obs.: É altamente recomendado que você tenha o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) instalado na sua máquina**
 
 ### Back-end
 Instale o [PHP-SQLite](https://www.php.net/manual/en/sqlite3.installation.php):
