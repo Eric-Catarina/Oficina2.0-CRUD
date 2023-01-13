@@ -17,6 +17,11 @@ onMounted(() => {
 });
 let ordemEhCrescente = false     // decresecente e crescente
 
+const tornaDataLegivel = (data) => {
+    let dataLegivel = data.format('DD/MM/YYYY HH:mm')
+    return dataLegivel
+}
+
 function filtraPorData() {
     let dataInicial = dayjs(myDateRangePicker.dates[0])
     let dataFinal = dayjs(myDateRangePicker.dates[1])
@@ -27,7 +32,7 @@ function filtraPorData() {
 
 }
 
-function sortString(propriedade) {
+const sortString = (propriedade) => {
     if (!ordemEhCrescente) {
         orcamentosVisiveis.value.sort(function (a, b) {
             return b[propriedade].localeCompare(a[propriedade], { sensitivity: 'base' });
@@ -41,10 +46,18 @@ function sortString(propriedade) {
     ordemEhCrescente = !ordemEhCrescente
 }
 
-
-const tornaDataLegivel = (data) => {
-    let dataLegivel = data.format('DD/MM/YYYY HH:mm')
-    return dataLegivel
+const sortValores = () => {
+    if (!ordemEhCrescente) {
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return a.valor_orcado > b.valor_orcado
+        })
+    }
+    else {
+        orcamentosVisiveis.value.sort(function (a, b) {
+            return a.valor_orcado < b.valor_orcado
+        });
+    }
+    ordemEhCrescente = !ordemEhCrescente
 }
 
 const sortDatas = () => {
@@ -64,16 +77,21 @@ const sortDatas = () => {
 </script>
 
 <template>
-    <div class="mt-12">
-        <div class="flex justify-end mb-2">
+    <div class="pt-2">
+        <div class="flex items-center justify-between max-h-32">
+            <div >
+                <img class="object-scale-down h-32 w-40" src="../../assets/oficina.png">
+            </div>
+
             <RouterLink :to="{ name: 'OrcamentoCreate' }"
-                class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded">Novo Orçamento</RouterLink>
+                class="place-self-end mb-4 px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md shadow-lg">Novo Orçamento
+            </RouterLink>
         </div>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between pb-4">
 
-                <label for="table-search" class="sr-only">Search</label>
+                <label for="table-search" class="sr-only">Pesquisar</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
@@ -85,7 +103,7 @@ const sortDatas = () => {
                     </div>
                     <input type="text" id="table-search"
                         class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for items">
+                        placeholder="Pesquisar">
                 </div>
 
 
@@ -102,9 +120,9 @@ const sortDatas = () => {
                             </div>
                             <input name="start" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Select date start">
+                                placeholder="Data inicial">
                         </div>
-                        <span class="mx-4 text-gray-500">to</span>
+                        <span class="mx-4 text-gray-500">até</span>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -116,7 +134,7 @@ const sortDatas = () => {
                             </div>
                             <input name="end" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Select date end">
+                                placeholder="Data final">
                         </div>
                     </div>
                     <div>
@@ -163,7 +181,7 @@ const sortDatas = () => {
 
                             </div>
                         </th>
-                        <th @click="sortString('valor_orcado')" scope="col" class="px-2 py-3">
+                        <th @click="sortValores('valor_orcado')" scope="col" class="px-2 py-3">
                             <div class="flex items-center">
                                 Valor
                                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1"
@@ -199,7 +217,7 @@ const sortDatas = () => {
                         }}</th>
                         <td class="py-4 px-6">{{ orcamento.nome_vendedor }}</td>
                         <td class="py-4 px-6">{{ orcamento.descricao }}</td>
-                        <td class="py-4 px-6">{{ orcamento.valor_orcado }}</td>
+                        <td class="py-4 px-6">{{ orcamento.valor_orcado + ",00" }}</td>
                         <td class="py-4 px-6">{{ tornaDataLegivel(orcamento.created_at ) }}</td>
                         <td class="py-4 px-6 space-x-2">
                             <RouterLink :to="{ name: 'OrcamentoEdit', params: { id: orcamento.id } }"

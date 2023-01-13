@@ -15,7 +15,7 @@ const form = reactive({
 </script>
 
 <template>
-  <div class="mt-12">
+  <div class="pt-14">
     <form class="max-w-md mx-auto p-4 bg-white shadow-md rounded-md" @submit.prevent="storeOrcamento(form)">
       <div class="space-y-6">
         <div class="mb-6">

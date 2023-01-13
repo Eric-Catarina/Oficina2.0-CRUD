@@ -16,7 +16,7 @@ onMounted(() => getOrcamento(props.id))
 </script>
 
 <template>
-  <div class="mt-12">
+  <div class="pt-14">
     <form class="max-w-md mx-auto p-4 bg-white shadow-md rounded-md" @submit.prevent="updateOrcamento($route.params.id)">
       <div class="space-y-6">
         <div class="mb-6">
@@ -51,7 +51,7 @@ onMounted(() => getOrcamento(props.id))
         <div class="mb-6">
           <label for="valor_orcado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor do
             Orçamento</label>
-          <input type="text" id="valor_orcado" v-model="orcamento.valor_orcado"
+          <input type="number" id="valor_orcado" v-model="orcamento.valor_orcado"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <div v-if="errors.valor_orcado">
             <span class="text-sm text-red-400">{{ errors.valor_orcado[0] }}</span>
