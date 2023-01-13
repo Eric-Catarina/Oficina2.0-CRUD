@@ -32,5 +32,6 @@ Através de um dashboard elegante manter tudo organizado e dentro dos prazos se 
   - Vite.js(bundler)
 ___
 - Desafios encontrados: Tive certa dificuldade ao manipular os tipos de dados e fazer a comunicação entre o banco de dados e o front-end. Porém, depois de me atentar mais aos detalhes, consegui fazer uma estrutura mais sólida e limpa.
-- 
+
 ## Instalação
+Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados
