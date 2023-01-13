@@ -1,7 +1,7 @@
-# Oficina 2.0
+<h1 align="center">🔧 Oficina 2.0 🔧</h1>
 
 Nessa aplicação é possível controlar e manipular de forma eficiente e simples os orçamentos da sua oficina.
-A aplicação conta com com filtros para intervalos de datas, ordenação por preços, datas além das features comuns de um CRUD(Create, Read, Update Delete) e muito mais.
+A aplicação conta com com filtros para intervalos de datas, ordenação por preços, datas, além das features comuns de um CRUD(Create, Read, Update & Delete) e muito mais.
 <br>
 Através de um dashboard elegante manter tudo organizado e dentro dos prazos se torna uma tarefa divertida e fácil!
 
