@@ -17,9 +17,22 @@ onMounted(() => {
 });
 let ordemEhCrescente = false     // decresecente e crescente
 
+const removeAccents = (str) => {
+    let comAcento = str
+    let semAcento = comAcento.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return semAcento
+}
+
 const tornaDataLegivel = (data) => {
     let dataLegivel = data.format('DD/MM/YYYY HH:mm')
     return dataLegivel
+}
+
+let inputPesquisa
+
+
+function filtraPorNome() {
+    orcamentosVisiveis.value = orcamentos.value.filter(item => removeAccents(item.nome_cliente.toLowerCase()).includes(removeAccents(inputPesquisa.toLowerCase())));
 }
 
 function filtraPorData() {
@@ -29,7 +42,6 @@ function filtraPorData() {
     orcamentosVisiveis.value = orcamentos.value.filter(function (item) {
         return (item.created_at.isAfter(dataInicial) && item.created_at.isBefore(dataFinal));
     });
-
 }
 
 const sortString = (propriedade) => {
@@ -91,7 +103,7 @@ const sortDatas = () => {
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between pb-4">
 
-                <label for="table-search" class="sr-only">Pesquisar</label>
+                <input type="text"  placeholder="Pesquisar"  class="sr-only">
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
@@ -101,7 +113,7 @@ const sortDatas = () => {
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input type="text" id="table-search"
+                    <input  type="text" id="table-search" v-model="inputPesquisa" v-on:input="filtraPorNome"
                         class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Pesquisar">
                 </div>
