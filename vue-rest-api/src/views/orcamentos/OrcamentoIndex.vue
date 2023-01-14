@@ -39,7 +39,7 @@ function filtraPorData() {
     let dataInicial = dayjs(myDateRangePicker.dates[0])
     let dataFinal = dayjs(myDateRangePicker.dates[1])
 
-    orcamentosVisiveis.value = orcamentos.value.filter(function (item) {
+    orcamentosVisiveis.value = orcamentosVisiveis.value.filter(function (item) {
         return (item.created_at.isAfter(dataInicial) && item.created_at.isBefore(dataFinal));
     });
 }
