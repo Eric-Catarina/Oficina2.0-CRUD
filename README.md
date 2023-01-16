@@ -104,7 +104,7 @@ sudo apt install composer
 git clone https://github.com/Eric-Catarina/Oficina2.0-CRUD.git
 cd Oficina2.0-CRUD
 composer install
-php artisan serve
+php artisan serve & 
 cd vue-rest-api
 npm install
 npm run dev
