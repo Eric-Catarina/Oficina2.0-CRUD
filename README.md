@@ -45,22 +45,23 @@ ___
 Durante a instalção, aparentemente a minha máquina (Windows) estava com configurações conflitantes com a criação do projeto no Back-end. Mas depois de estudar os erros, desinstalar e reinstalar algumas depêndencias conflitantes, começou a dar certo. Tive alguns problemas também com o hot-reload do Vite que não estava funcionando. Por último e não menos importante, algumas funcionalidades(DateRangePicker) do Flowbite estavam literalmente sem documentação, e para fazê-las funcionar, tive que procurar em vários repositórios do Github o código fonte delas e a partir daí extrair as funções que eu precisava.
 ___
 # Instalação
-É possível instalar e rodar o projeto de duas maneiras(Docker ou pelo Terminal):
-## [Docker](https://www.docker.com/) 🐳
+É possível instalar e rodar o projeto de duas maneiras(Docker¹ ou pelo Terminal²):
+## 1. [Docker](https://www.docker.com/) 🐳
 ```
 docker run -p 8000:8000 -p 3000:3000 eric-catarina/oficina-2
 ```
-## Terminal ⌨️
+## 2. Terminal ⌨️
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
-**Obs.: É altamente recomendado que você tenha o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) instalado na sua máquina**
+> **Obs.: É altamente recomendado que você tenha o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) instalado na sua máquina**
 
-### Back-end
+### Back-end  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain-wordmark.svg" height="20" />
+
 Instale o [PHP-SQLite](https://www.php.net/manual/en/sqlite3.installation.php):
 ```
 sudo apt install php-sqlite3
 ```
-Obs.: Em caso de erro na instalação e configuração do php-sqlite entre nesse [link](https://stackoverflow.com/questions/8803728/pdo-sqlite-could-not-find-driver-php-file-not-processing)
+> Obs.: Em caso de erro na instalação e configuração do php-sqlite entre nesse [link](https://stackoverflow.com/questions/8803728/pdo-sqlite-could-not-find-driver-php-file-not-processing)
 ___
 Instale o [Composer](https://getcomposer.org/download/).
 <br>
@@ -80,7 +81,8 @@ E rodar o servidor:
 ```
 php artisan serve
 ```
-### Front-end
+### Front-end  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" height="20" />
+
 Para ver a aplicação, **abra outro terminal** e entre na pasta do front-end:
 ```
 cd vue-rest-api
@@ -94,7 +96,7 @@ E rodar a aplicação:
 npm run dev
 ```
 ### Instalação rápida:
-```
+```sh
 sudo apt install nodejs
 sudo apt install php
 sudo apt install php-sqlite3
@@ -107,4 +109,5 @@ cd vue-rest-api
 npm install
 npm run dev
 ```
-Clique [aqui](http://localhost:3000/orcamento) para ver a aplicação🎆
+## Rodando a aplicação
+Depois de seguir os passos acima, seja pelo docker ou pelo terminal, basta clicar [aqui](http://localhost:3000/orcamento) para ver a aplicação🎆
