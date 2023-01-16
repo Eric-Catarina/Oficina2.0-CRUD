@@ -1,6 +1,6 @@
 {
   "name": "vue-rest-api",
-  "version": "0.0.0",
+  "version": "4.0.4",
   "private": true,
   "scripts": {
     "dev": "vite",

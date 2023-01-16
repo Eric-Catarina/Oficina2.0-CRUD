@@ -1,0 +1,5 @@
+node_modules
+vue-rest-api/node_modules
+npm-debug.log
+vendor
+.git
