@@ -47,8 +47,8 @@ ___
 # Instalação
 É possível instalar e rodar o projeto de duas maneiras(Docker¹ ou pelo Terminal²):
 ## 1. [Docker](https://www.docker.com/) 🐳
-```
-docker run -p 8000:8000 -p 3000:3000 eric-catarina/oficina-2
+```docker
+docker run -p 8000:8000 -p 3000:3000 ericcatarina/oficina-2
 ```
 ## 2. Terminal ⌨️
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
