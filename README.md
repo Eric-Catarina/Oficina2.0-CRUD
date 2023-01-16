@@ -44,6 +44,12 @@ ___
 Durante a instalção, aparentemente a minha máquina (Windows) estava com configurações conflitantes com a criação do projeto no Back-end. Mas depois de estudar os erros, desinstalar e reinstalar algumas depêndencias conflitantes, começou a dar certo. Tive alguns problemas também com o hot-reload do Vite que não estava funcionando. Por último e não menos importante, algumas funcionalidades(DateRangePicker) do Flowbite estavam literalmente sem documentação, e para fazê-las funcionar, tive que procurar em vários repositórios do Github o código fonte delas e a partir daí extrair as funções que eu precisava.
 ___
 # Instalação
+É possível instalar e rodar o projeto de duas maneiras:
+## [Docker](https://www.docker.com/) 🐳
+```
+docker run -p 8000:8000 -p 3000:3000 eric-catarina/oficina-2
+```
+## Terminalhttps://learn.microsoft.com/pt-br/windows/wsl/install ⌨️
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
 **Obs.: É altamente recomendado que você tenha o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) instalado na sua máquina**
@@ -84,6 +90,20 @@ npm install
 ```
 E rodar a aplicação:
 ```
+npm run dev
+```
+### Instalação rápida:
+```
+sudo apt install nodejs
+sudo apt install php
+sudo apt install php-sqlite3
+sudo apt install composer
+git clone https://github.com/Eric-Catarina/Oficina2.0-CRUD.git
+cd Oficina2.0-CRUD
+composer install
+php artisan serve
+cd vue-rest-api
+npm install
 npm run dev
 ```
 Clique [aqui](http://localhost:3000/orcamento) para ver a aplicação🎆
