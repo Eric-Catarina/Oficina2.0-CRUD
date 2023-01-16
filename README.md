@@ -50,6 +50,11 @@ ___
 ```docker
 docker run -p 8000:8000 -p 3000:3000 ericcatarina/oficina-2
 ```
+> Caso o comando acima não funciona, tente: 
+<br>
+
+> docker run --rm --network host ericcatarina/oficina-2
+
 ## 2. Terminal ⌨️
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
