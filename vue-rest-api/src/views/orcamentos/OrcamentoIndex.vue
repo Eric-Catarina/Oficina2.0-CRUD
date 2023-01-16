@@ -4,7 +4,9 @@ import { onMounted } from 'vue';
 import dayjs from "dayjs";
 import DateRangePicker from 'flowbite-datepicker/DateRangePicker';
 const { orcamentos, orcamentosVisiveis, getOrcamentos, destroyOrcamento } = useOrcamentos();
+
 let myDateRangePicker
+let inputPesquisa
 
 onMounted(() => {
     getOrcamentos()
@@ -17,7 +19,7 @@ onMounted(() => {
 });
 let ordemEhCrescente = false     // decresecente e crescente
 
-const removeAccents = (str) => {
+const removeAcentos = (str) => {
     let comAcento = str
     let semAcento = comAcento.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     return semAcento
@@ -28,31 +30,28 @@ const tornaDataLegivel = (data) => {
     return dataLegivel
 }
 
-let inputPesquisa
-
-
 function filtraPorNome() {
-    orcamentosVisiveis.value = orcamentos.value.filter(item => removeAccents(item.nome_cliente.toLowerCase()).includes(removeAccents(inputPesquisa.toLowerCase())));
+    orcamentosVisiveis.value = orcamentos.value.filter(orcamentoAtual => removeAcentos(orcamentoAtual.nome_cliente.toLowerCase()).includes(removeAcentos(inputPesquisa.toLowerCase())));
 }
 
 function filtraPorData() {
     let dataInicial = dayjs(myDateRangePicker.dates[0])
     let dataFinal = dayjs(myDateRangePicker.dates[1])
 
-    orcamentosVisiveis.value = orcamentosVisiveis.value.filter(function (item) {
-        return (item.created_at.isAfter(dataInicial) && item.created_at.isBefore(dataFinal));
+    orcamentosVisiveis.value = orcamentosVisiveis.value.filter(function (orcamentoAtual) {
+        return (orcamentoAtual.created_at.isAfter(dataInicial) && orcamentoAtual.created_at.isBefore(dataFinal));
     });
 }
 
 const sortString = (propriedade) => {
     if (!ordemEhCrescente) {
-        orcamentosVisiveis.value.sort(function (a, b) {
-            return b[propriedade].localeCompare(a[propriedade], { sensitivity: 'base' });
+        orcamentosVisiveis.value.sort(function (orcamentoA, orcamentoB) {
+            return orcamentoB[propriedade].localeCompare(orcamentoA[propriedade], { sensitivity: 'base' });
         })
     }
     else {
-        orcamentosVisiveis.value.sort(function (a, b) {
-            return a[propriedade].localeCompare(b[propriedade], { sensitivity: 'base' });
+        orcamentosVisiveis.value.sort(function (orcamentoA, orcamentoB) {
+            return orcamentoA[propriedade].localeCompare(orcamentoB[propriedade], { sensitivity: 'base' });
         })
     }
     ordemEhCrescente = !ordemEhCrescente
