@@ -26,6 +26,7 @@ Através de um dashboard elegante manter tudo organizado e dentro dos prazos se 
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" height="40"/>
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"height="40" />
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" height="40"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="40"/>
 </p>
 
 - Back-end: 
@@ -44,12 +45,12 @@ ___
 Durante a instalção, aparentemente a minha máquina (Windows) estava com configurações conflitantes com a criação do projeto no Back-end. Mas depois de estudar os erros, desinstalar e reinstalar algumas depêndencias conflitantes, começou a dar certo. Tive alguns problemas também com o hot-reload do Vite que não estava funcionando. Por último e não menos importante, algumas funcionalidades(DateRangePicker) do Flowbite estavam literalmente sem documentação, e para fazê-las funcionar, tive que procurar em vários repositórios do Github o código fonte delas e a partir daí extrair as funções que eu precisava.
 ___
 # Instalação
-É possível instalar e rodar o projeto de duas maneiras:
+É possível instalar e rodar o projeto de duas maneiras(Docker ou pelo Terminal):
 ## [Docker](https://www.docker.com/) 🐳
 ```
 docker run -p 8000:8000 -p 3000:3000 eric-catarina/oficina-2
 ```
-## Terminalhttps://learn.microsoft.com/pt-br/windows/wsl/install ⌨️
+## Terminal ⌨️
 Certifique-se de que [Node.js](https://nodejs.org/en/download/) e [PHP](https://www.php.net/downloads.php) estão instalados.
 <br>
 **Obs.: É altamente recomendado que você tenha o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install) instalado na sua máquina**
